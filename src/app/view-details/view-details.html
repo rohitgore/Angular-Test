@@ -1,0 +1,23 @@
+<section class="code-snippet"  id="view-details-section">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="card mt-3"> 
+                <div class="card-header">User Information (ID: {{ rowData.id }})</div>
+                <div class="card-body">
+                    <div *ngIf="rowData;else elseblock">
+                        <p><strong>Name:</strong> {{ rowData.name }}</p>
+                        <p><strong>Language:</strong> {{ rowData.language }}</p>
+                        <p><strong>Bio:</strong> {{ rowData.bio }}</p>
+                    </div>
+                    <ng-template #elseblock>
+                        <p>No data available.</p>
+                    </ng-template>
+                </div>
+                <div class="card-footer">
+                    <button class="p-button-text" (click)="backToHome()">Back to Home</button>
+                </div>
+        </div>
+    </div>
+    </div>
+</section>
+            

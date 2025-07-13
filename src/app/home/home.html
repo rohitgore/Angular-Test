@@ -1,0 +1,91 @@
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">All User Details</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="col-md-12">
+                        <p-table #dt [value]="users()" showGridlines [paginator]="true" [rows]="10" [editMode]="'row'"
+                            editable dataKey="id" responsiveLayout="scroll" styleClass="p-datatable-striped p-datatable-hoverable p-datatable-sm">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th *ngFor="let col of columns()">{{ col.header }}</th>
+                                    <th style="width:10%">ACTIONS</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-user let-editing="editing">
+                                <tr [pEditableRow]="user">
+                                    <td pEditableColumnField="name">
+                                        <p-cellEditor>
+                                            <ng-template #input>
+                                                <input pInputText type="text" [(ngModel)]="user.name"
+                                                    class="form-control" />
+                                            </ng-template>
+                                            <ng-template #output>
+                                                {{ user.name }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td pEditableColumnField="language">
+                                        <p-cellEditor>
+                                            <ng-template #input>
+                                                <input pInputText type="text" [(ngModel)]="user.language"
+                                                    class="form-control" />
+                                            </ng-template>
+                                            <ng-template #output>
+                                                {{ user.language }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td pEditableColumnField="bio">
+                                        <p-cellEditor>
+                                            <ng-template #input>
+                                                <input pInputText type="text" [(ngModel)]="user.bio"
+                                                    class="form-control" />
+                                            </ng-template>
+                                            <ng-template #output>
+                                                {{ user.bio }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td pEditableColumnField="version">
+                                        <p-cellEditor>
+                                            <ng-template #input>
+                                                <input pInputText [(ngModel)]="user.version" class="form-control" />
+                                            </ng-template>
+                                            <ng-template #output>
+                                                {{ user.version }}
+                                            </ng-template>
+                                        </p-cellEditor>
+                                    </td>
+                                    <td>
+                                        <button *ngIf="!editing" pButton class="p-button-rounded p-button-text p-button-sm me-2"
+                                            (click)="onView(user)">
+                                            <fa-icon [icon]="'eye'"></fa-icon>
+                                        </button>
+                                        <button *ngIf="!editing" pButton class="p-button-rounded p-button-text p-button-sm me-1"
+                                            (click)="onEdit(user); dt.initRowEdit(user)">
+                                            <fa-icon [icon]="'edit'"></fa-icon>
+                                        </button>
+
+                                        <button *ngIf="editing" pButton class="p-button-rounded p-button-text p-button-sm me-1"
+                                            (click)="onSave(user, $event)">
+                                            <fa-icon [icon]="'check'" class="text-success"></fa-icon>
+                                        </button>
+
+                                        <button *ngIf="editing" pButton class="p-button-rounded p-button-text p-button-sm"
+                                            (click)="onCancelEdit(user)">
+                                            <fa-icon [icon]="'times'" class="text-danger"></fa-icon>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
