@@ -100,6 +100,20 @@ onCancelEdit(row: any) {
   this.dt.cancelRowEdit(row);
 }
 
+onDetailsView(row: any) {
+  if (!this.isEditing) {
+    this.api.viewDetails = row.data;
+    this.router.navigate(['/view']);
+  }
+}
+
+onRowClicked(user: any, editing: boolean) {
+  if (!editing) {
+    this.api.viewDetails = user;
+    this.router.navigate(['/view']);
+  }
+}
+
 
 
   ngOnInit(): void {
